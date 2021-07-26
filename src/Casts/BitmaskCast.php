@@ -3,6 +3,7 @@
 namespace AwStudio\Bitmask\Casts;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+use InvalidArgumentException;
 
 class BitmaskCast implements CastsAttributes
 {
@@ -41,9 +42,10 @@ class BitmaskCast implements CastsAttributes
         if (is_array($value)) {
             $bitmask = 0;
             foreach ($value as $bit) {
-                if ($bit) {
-                    $bitmask = $bitmask | $bit;
+                if (!$this->isPowerOfTwo($bit)) {
+                    throw new InvalidArgumentException($bit . ' is not a power of two.');
                 }
+                $bitmask = $bitmask | $bit;
             }
 
             return $bitmask;
