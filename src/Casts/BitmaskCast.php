@@ -41,11 +41,19 @@ class BitmaskCast implements CastsAttributes
         if (is_array($value)) {
             $bitmask = 0;
             foreach ($value as $bit) {
-                $bitmask = $bitmask | $bit;
+                if ($bit) {
+                    $bitmask = $bitmask | $bit;
+                }
             }
 
             return $bitmask;
         }
+        
         return $value;
+    }
+
+    public function isPowerOfTwo(Int $number)
+    {
+        return ($number & ($number - 1)) == 0;
     }
 }
