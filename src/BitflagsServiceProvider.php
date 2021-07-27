@@ -1,11 +1,11 @@
 <?php
 
-namespace AwStudio\Bitmask;
+namespace AwStudio\Bitflags;
 
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\ServiceProvider;
 
-class BitmaskServiceProvider extends ServiceProvider
+class BitflagsServiceProvider extends ServiceProvider
 {
     /**
      * Register application services.

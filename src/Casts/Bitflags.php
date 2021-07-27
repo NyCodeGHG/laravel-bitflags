@@ -1,11 +1,11 @@
 <?php
 
-namespace AwStudio\Bitmask\Casts;
+namespace AwStudio\Bitflags\Casts;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use InvalidArgumentException;
 
-class BitmaskCast implements CastsAttributes
+class Bitflags implements CastsAttributes
 {
     /**
      * Cast the given value.

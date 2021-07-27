@@ -1,5 +1,5 @@
 {
-    "name": "aw-studio/laravel-bitmask",
+    "name": "aw-studio/laravel-bitflags",
     "license": "MIT",
     "authors": [
         {
@@ -12,7 +12,7 @@
     },
     "autoload": {
         "psr-4": {
-            "AwStudio\\Bitmask\\": "src"
+            "AwStudio\\Bitflags\\": "src"
         },
         "files": [
             "src/helpers.php"
@@ -34,7 +34,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "AwStudio\\Bitmask\\BitmaskServiceProvider"
+                "AwStudio\\Bitflags\\BitflagsServiceProvider"
             ]
         },
         "branch-alias": {

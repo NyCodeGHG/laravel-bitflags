@@ -1,19 +1,19 @@
 <?php
-if (! function_exists('bitmaskAdd')) {
-    function bitmaskAdd(array|int $bitmask, int $bit)
+if (! function_exists('addBitflag')) {
+    function addBitflag(int $flag, array|int $bitmask)
     {
         $bitmask = getBitmask($bitmask);
 
-        return $bit | $bitmask;
+        return $flag | $bitmask;
     }
 }
 
-if (! function_exists('bitmaskRemove')) {
-    function bitmaskRemove(array|int $bitmask, int $bit)
+if (! function_exists('removeBitflag')) {
+    function removeBitflag(int $flag, array|int $bitmask)
     {
         $bitmask = getBitmask($bitmask);
         
-        return $bitmask & ~$bit;
+        return $bitmask & ~$flag;
     }
 }
 
@@ -35,7 +35,7 @@ if (! function_exists('getBitmask')) {
     }
 }
 
-if (! function_exists('bitmaskIncludes')) {
+if (! function_exists('inBitmask')) {
     function inBitmask(int $flag, array|int $bitmask)
     {
         $bitmask = getBitmask($bitmask);
