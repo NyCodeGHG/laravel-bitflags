@@ -37,17 +37,19 @@ class BitflagsServiceProvider extends ServiceProvider
         Builder::macro('whereBitflag', function (string $column, int $flag) {
             return $this->where($column, '&', $flag);
         });
-        Builder::macro('whereBitflags', function (string $column, array|int $flags) {
+        Builder::macro('whereBitflags', function (string $column, array | int $flags) {
             $flags = getBitmask($flags);
+
             return $this->whereRaw("$column & $flags = $flags");
         });
-        Builder::macro('whereBitflagIn', function (string $column, array|int $flags) {
+        Builder::macro('whereBitflagIn', function (string $column, array | int $flags) {
             $flags = getBitmask($flags);
+
             return $this->whereRaw("$column & $flags");
         });
         Builder::macro('whereBitflagNot', function (string $column, int $flag) {
             return $this->where(function () use ($column, $flag) {
-                return $this->whereRAW('NOT '.$column.' & ' . $flag)
+                return $this->whereRAW('NOT '.$column.' & '.$flag)
                     ->orWhereNull($column);
             });
         });
