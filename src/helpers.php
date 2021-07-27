@@ -1,7 +1,8 @@
 <?php
 if (! function_exists('addBitflag')) {
-    function addBitflag(int $flag, array|int $bitmask)
+    function addBitflag(array|int $flag, array|int $bitmask)
     {
+        $flag = getBitmask($flag);
         $bitmask = getBitmask($bitmask);
 
         return $flag | $bitmask;
@@ -9,8 +10,9 @@ if (! function_exists('addBitflag')) {
 }
 
 if (! function_exists('removeBitflag')) {
-    function removeBitflag(int $flag, array|int $bitmask)
+    function removeBitflag(array|int $flag, array|int $bitmask)
     {
+        $flag = getBitmask($flag);
         $bitmask = getBitmask($bitmask);
         
         return $bitmask & ~$flag;

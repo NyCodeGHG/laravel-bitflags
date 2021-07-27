@@ -48,6 +48,14 @@ public function markRead()
 }
 ```
 
+You can also add multiple flags at once:
+
+```php
+$this->update([
+    'status' => addBitflag([self::READ, self::SEEN], $this->status)
+]);
+```
+
 ### Removing a flag from a bitmask
 
 Adding a `bitflag` to a maks can be achieved using the `removeBitflag()` helper:
@@ -58,5 +66,36 @@ public function markRead()
     $this->update([
         'status' => removeBitflag(self::READ, $this->status)
     ]);
+}
+```
+
+Remove multiple flags at once:
+
+```php
+$this->update([
+    'status' => removeBitflag([self::READ, self::SEEN], $this->status)
+]);
+```
+
+### Resolving bitmasks
+
+To check if bitflags are included in a bitmask you may use the following query methods:
+
+```php
+public function scopeRead($query)
+{
+    return $this->whereBitflag('status', self::READ);
+}
+public function scopeUnread($query)
+{
+    return $this->whereBitflagNot('status', self::READ);
+}
+public function scopeSeenOrRead($query)
+{
+    return $this->whereBitflagIn('status', [self::READ, self::SEEN]);
+}
+public function scopeSeenAndRead($query)
+{
+    return $this->whereBitflags('status', [self::READ, self::SEEN]);
 }
 ```
