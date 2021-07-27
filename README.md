@@ -12,7 +12,7 @@ composer require aw-studio/bitflags
 
 Imagine you want to store multiple status flags in a single `status(int)` column of your `Email` model.
 This can be achieved using bitwise operations to create a representative `bitmask`.
-In order to enable bitwise operations bitflags `MUST` all be powers of to (1,2,4,8,16 …).
+In order to enable bitwise operations bitflags `MUST` all be powers of two (1,2,4,8,16 …).
 You should also make shure to properly cast the column as `Bitflags::class`.
 
 ```php
