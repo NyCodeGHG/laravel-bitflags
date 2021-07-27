@@ -10,29 +10,26 @@ composer require aw-studio/bitflags
 
 ## Usage
 
-Imagine you want to store multiple status flags in a single `status` column of your `Email` model.
+Imagine you want to store multiple status flags in a single `status(int)` column of your `Email` model.
 This can be achieved using bitwise operations to create a representative `bitmask`.
-Bitflags must all be powers of to (1,2,4,8,16 …)
+In order to enable bitwise operations bitflags `MUST` all be powers of to (1,2,4,8,16 …).
+You should also make shure to properly cast the column as `Bitflags::class`.
 
 ```php
 class Email extends Model
 {
-    // Email status flags
+    // Email status flags, all powers of 2
     public const SENT = 1;
     public const RECEIVED = 2;
     public const SEEN = 4;
     public const READ = 8;
 
     protected $fillable = ['status'];
+
+    public $casts = [
+        'status' => Bitflags::class
+    ];
 }
-```
-
-In order to store and receive `bitmask` from your database make shure to properly cast the column:
-
-```php
-public $casts = [
-    'status' => Bitflags::class
-];
 ```
 
 ### Adding a flag to a bitmask
@@ -61,7 +58,7 @@ $this->update([
 Adding a `bitflag` to a maks can be achieved using the `removeBitflag()` helper:
 
 ```php
-public function markRead()
+public function markUnread()
 {
     $this->update([
         'status' => removeBitflag(self::READ, $this->status)
@@ -77,7 +74,7 @@ $this->update([
 ]);
 ```
 
-### Resolving bitmasks
+### Query bitflags
 
 To check if bitflags are included in a bitmask you may use the following query methods:
 
