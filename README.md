@@ -96,3 +96,16 @@ public function scopeSeenAndRead($query)
     return $this->whereBitflags('status', [self::READ, self::SEEN]);
 }
 ```
+
+## Accessors
+
+In order to get single flags it's a good idea to prepare accessors:
+
+```php
+protected $appends = ['read'];
+
+public function getReadAttribute()
+{
+    return inBitmask(self::READ, $this->status);
+}
+```
