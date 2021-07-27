@@ -35,6 +35,15 @@ if (! function_exists('getBitmask')) {
     }
 }
 
+if (! function_exists('bitmaskIncludes')) {
+    function inBitmask(int $flag, array|int $bitmask)
+    {
+        $bitmask = getBitmask($bitmask);
+        
+        return ($flag & $bitmask) == $flag;
+    }
+}
+
 if (! function_exists('isPowerOfTwo')) {
     function isPowerOfTwo(Int $number)
     {
