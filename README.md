@@ -99,7 +99,7 @@ public function scopeSeenAndRead($query)
 
 ## Accessors
 
-In order to get single flags it's a good idea to prepare accessors:
+In order to get single flag attributes you can prepare accessors as follows:
 
 ```php
 protected $appends = ['read'];
