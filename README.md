@@ -34,7 +34,7 @@ class Email extends Model
 
 ### Adding a flag to a bitmask
 
-Adding a `bitflag` to a maks can be achieved using the `addBitflag()` helper:
+Adding a `bitflag` to a bitmask can be achieved using the `addBitflag()` helper:
 
 ```php
 public function markRead()
@@ -55,7 +55,7 @@ $this->update([
 
 ### Removing a flag from a bitmask
 
-Adding a `bitflag` to a maks can be achieved using the `removeBitflag()` helper:
+Removing a `bitflag` from a bitmask can be achieved using the `removeBitflag()` helper:
 
 ```php
 public function markUnread()
