@@ -22,7 +22,7 @@ class Bitflags implements CastsAttributes
         $mask = [];
         foreach ($bits as $i => $bit) {
             if ($bit != '0') {
-                $mask []= pow(2, $i);
+                $mask[] = 1 << $i;
             }
         }
         return $mask;
